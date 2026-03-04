@@ -225,13 +225,13 @@ const HowItWorksSection = () =>
         Como funciona na prática
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-        <div className="space-y-6 my-[73px]">
+        <div className="space-y-8">
           {[
         { step: "1", text: "Você senta e usa seu trono como sempre fez, sem mudar nada 👑" },
         { step: "2", text: "Agora que está mais leve, basta apertar o botão ao lado do vaso e um jato de água preciso vai fazer a limpeza! 🚿" },
         { step: "3", text: "Agora que está REALMENTE limpo, pode seguir sua vida tranquilamente" }].
         map((item) =>
-        <div key={item.step} className="flex items-start gap-4 px-0 my-[69px]">
+        <div key={item.step} className="flex items-start gap-4">
               <span className="flex-shrink-0 h-10 w-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-display font-bold">
                 {item.step}
               </span>
