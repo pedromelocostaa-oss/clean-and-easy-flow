@@ -330,24 +330,28 @@ const TestimonialsSection = () => {
 
   return (
     <section className="py-16 md:py-24">
-      <div className="container text-center space-y-10">
-        <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
+      <div className="text-center space-y-10">
+        <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground container">
           Quem usa, não volta atrás. 💬
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {testimonials.map((t, i) => (
-            <div key={i} className="bg-surface-elevated rounded-2xl p-6 shadow-card text-left">
-              <div className="flex gap-1 mb-3">
-                {Array.from({ length: t.rating }).map((_, j) => (
-                  <span key={j} style={{ color: 'hsl(45, 93%, 47%)' }}>★</span>
-                ))}
+        <div className="overflow-x-auto scrollbar-hide">
+          <div className="flex gap-6 px-[max(1rem,calc((100vw-1280px)/2+1rem))] w-max">
+            {testimonials.map((t, i) => (
+              <div key={i} className="bg-surface-elevated rounded-2xl p-6 shadow-card text-left w-[300px] flex-shrink-0">
+                <div className="flex gap-1 mb-3">
+                  {Array.from({ length: t.rating }).map((_, j) => (
+                    <span key={j} style={{ color: 'hsl(45, 93%, 47%)' }}>★</span>
+                  ))}
+                </div>
+                <p className="text-foreground italic mb-4">"{t.text}"</p>
+                <p className="text-sm font-semibold text-muted-foreground">— {t.name}</p>
               </div>
-              <p className="text-foreground italic mb-4">"{t.text}"</p>
-              <p className="text-sm font-semibold text-muted-foreground">— {t.name}</p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-        <CTAButton>Quero sentir isso também <ArrowRight className="ml-1 h-4 w-4" /></CTAButton>
+        <div className="container">
+          <CTAButton>Quero sentir isso também <ArrowRight className="ml-1 h-4 w-4" /></CTAButton>
+        </div>
       </div>
     </section>
   );
