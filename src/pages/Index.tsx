@@ -60,62 +60,108 @@ const HeroSection = () => (
 
 // ─── SECTION 2: PROBLEMATIZAÇÃO ───
 const ProblemSection = () => (
-  <section className="py-16 md:py-24">
-    <div className="container">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-        <div className="flex justify-center">
-          <img
-            src={problemSection}
-            alt="Problemas com papel e chuveirinho"
-            className="rounded-2xl max-w-full h-auto"
-          />
-        </div>
-        <div className="space-y-6">
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
-            Papel e chuveirinho: a solução improvisada do Brasil.
-          </h2>
-          <ul className="space-y-4">
+  <section className="py-20 md:py-28 bg-surface-soft">
+    <div className="container max-w-4xl text-center space-y-8">
+      {/* Kicker */}
+      <p className="text-xs font-bold tracking-widest uppercase text-destructive">
+        O PROBLEMA QUE NINGUÉM FALA
+      </p>
+
+      {/* Headline */}
+      <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-foreground">
+        Papel e chuveirinho não te limpam de verdade
+      </h2>
+
+      {/* Subheadline */}
+      <p className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto">
+        Pense assim: se você sujasse a mão, usaria só papel pra limpar? Então por que aceitar isso na parte mais sensível do corpo?
+      </p>
+
+      {/* Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-4">
+        {/* Card 1 - Papel */}
+        <div className="rounded-2xl border border-destructive/20 bg-destructive/[0.03] p-6 text-left">
+          <span className="text-2xl">🧻</span>
+          <h3 className="font-display font-bold text-lg text-foreground mt-3 mb-4">Papel Higiênico</h3>
+          <ul className="space-y-3">
             {[
-              "Papel não lava — só espalha.",
-              "Chuveirinho é desajeitado, molha tudo e dá trabalho.",
-              "Existe um jeito mais simples e mais limpo.",
+              "Espalha mais do que limpa",
+              "Causa irritação com o uso frequente",
+              "Gera desperdício e entope encanamento",
+              "Você usaria papel pra limpar gordura da mão?",
             ].map((text, i) => (
               <li key={i} className="flex items-start gap-3">
-                <span className="mt-1 flex-shrink-0 h-5 w-5 rounded-full bg-destructive/10 flex items-center justify-center text-destructive text-xs">✕</span>
-                <span className="text-muted-foreground">{text}</span>
+                <span className="mt-0.5 flex-shrink-0 text-destructive font-bold text-sm">✕</span>
+                <span className="text-muted-foreground text-sm">{text}</span>
               </li>
             ))}
           </ul>
-          <CTAButton>Ver o Jet Clean <ArrowRight className="ml-1 h-4 w-4" /></CTAButton>
+        </div>
+
+        {/* Card 2 - Chuveirinho */}
+        <div className="rounded-2xl border border-destructive/20 bg-destructive/[0.03] p-6 text-left">
+          <span className="text-2xl">🚿</span>
+          <h3 className="font-display font-bold text-lg text-foreground mt-3 mb-4">Chuveirinho Higiênico</h3>
+          <ul className="space-y-3">
+            {[
+              "Molha o banheiro inteiro",
+              "Exige malabarismo pra usar direito",
+              "Difícil controlar a pressão da água",
+            ].map((text, i) => (
+              <li key={i} className="flex items-start gap-3">
+                <span className="mt-0.5 flex-shrink-0 text-destructive font-bold text-sm">✕</span>
+                <span className="text-muted-foreground text-sm">{text}</span>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
+
+      {/* Pill alert */}
+      <div className="pt-2">
+        <span className="inline-flex items-center gap-2 rounded-full bg-muted px-5 py-2.5 text-sm text-muted-foreground">
+          ⚠️ Existe uma forma melhor. E é mais simples do que você imagina.
+        </span>
+      </div>
+
+      {/* CTA */}
+      <CTAButton>Conhecer a solução <ArrowRight className="ml-1 h-4 w-4" /></CTAButton>
     </div>
   </section>
 );
 
 // ─── SECTION 3: APRESENTAÇÃO ───
 const ProductIntroSection = () => (
-  <section className="py-16 md:py-24 bg-surface-soft">
-    <div className="container max-w-3xl text-center space-y-6">
-      <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
-        A evolução que seu trono precisa 👑
-      </h2>
-      <p className="text-muted-foreground text-lg">
-        O Jet Clean, um produto da Evacuei, é um bidê de acoplar instalado em 8 minutos no seu vaso sanitário. Ele usa um jato de água direcionado para uma higienização eficiente — de forma prática, econômica e simples.
-      </p>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left pt-4">
-        {[
-          { emoji: "🚿", text: "Limpeza com água, direto onde você precisa" },
-          { emoji: "⏰", text: "Instalação em até 8 minutos, sem ferramentas especiais" },
-          { emoji: "🇧🇷", text: "Compatível com 97% dos vasos sanitários do Brasil" },
-        ].map((item, i) => (
-          <div key={i} className="bg-surface-elevated rounded-xl p-5 shadow-soft">
-            <span className="text-2xl">{item.emoji}</span>
-            <p className="mt-2 text-sm text-foreground font-medium">{item.text}</p>
+  <section className="py-20 md:py-28">
+    <div className="container">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+        <div className="space-y-6">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
+            A evolução que seu trono precisa 👑
+          </h2>
+          <p className="text-muted-foreground text-lg">
+            O Jet Clean, um produto da Evacuei, é um bidê de acoplar instalado em 8 minutos no seu vaso sanitário. Ele usa um jato de água direcionado para uma higienização eficiente — de forma prática, econômica e simples.
+          </p>
+          <div className="space-y-4 pt-2">
+            {[
+              { emoji: "🚿", text: "Limpeza com água, direto onde você precisa" },
+              { emoji: "⏰", text: "Instalação em até 8 minutos, sem ferramentas especiais" },
+              { emoji: "🇧🇷", text: "Compatível com 97% dos vasos sanitários do Brasil" },
+            ].map((item, i) => (
+              <div key={i} className="bg-surface-elevated rounded-xl p-5 shadow-soft flex items-start gap-3">
+                <span className="text-2xl">{item.emoji}</span>
+                <p className="text-sm text-foreground font-medium">{item.text}</p>
+              </div>
+            ))}
           </div>
-        ))}
+          <CTAButton>Quero o meu Jet Clean <ArrowRight className="ml-1 h-4 w-4" /></CTAButton>
+        </div>
+        <div className="flex justify-center">
+          <div className="w-full max-w-md aspect-square rounded-2xl bg-muted flex items-center justify-center text-muted-foreground shadow-card">
+            <span className="text-sm">📷 Inserir imagem do produto aqui</span>
+          </div>
+        </div>
       </div>
-      <CTAButton>Quero o meu Jet Clean <ArrowRight className="ml-1 h-4 w-4" /></CTAButton>
     </div>
   </section>
 );
