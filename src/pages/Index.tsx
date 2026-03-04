@@ -231,7 +231,7 @@ const HowItWorksSection = () =>
         { step: "2", text: "Conecte na entrada de água com o adaptador." },
         { step: "3", text: "Ajuste a pressão e use quando precisar." }].
         map((item) =>
-        <div key={item.step} className="flex items-start gap-4">
+        <div key={item.step} className="flex items-start gap-4 px-0 my-[69px]">
               <span className="flex-shrink-0 h-10 w-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-display font-bold">
                 {item.step}
               </span>
@@ -245,9 +245,9 @@ const HowItWorksSection = () =>
         </div>
         <div className="flex justify-center">
           <img
-          src={installation}
+
           alt="Instalação do Jet Clean"
-          className="rounded-2xl shadow-card max-w-full h-auto" />
+          className="rounded-2xl shadow-card max-w-full h-auto" src="/lovable-uploads/4d4d79ca-1617-4280-a46b-25e01c236cdf.png" />
         
         </div>
       </div>
