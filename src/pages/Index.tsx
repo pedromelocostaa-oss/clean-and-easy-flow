@@ -1,3 +1,4 @@
+import { useRef, useEffect, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Check, ChevronDown, Droplets, Shield, Truck, RefreshCw, ShowerHead, Clock, Wrench } from "lucide-react";
@@ -328,13 +329,44 @@ const TestimonialsSection = () => {
     { name: "Thiago Souza, 29 anos", text: "Comprei por curiosidade e virou item essencial. Quando viajo e não tenho, sinto falta. Já presenteei dois amigos.", rating: 5 },
   ];
 
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const isPaused = useRef(false);
+
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    const cardWidth = 300 + 24; // card width + gap
+    let currentIndex = 0;
+
+    const interval = setInterval(() => {
+      if (isPaused.current || !container) return;
+      currentIndex++;
+      if (currentIndex >= testimonials.length - 3) {
+        currentIndex = 0;
+        container.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        container.scrollTo({ left: currentIndex * cardWidth, behavior: "smooth" });
+      }
+    }, 2000);
+
+    return () => clearInterval(interval);
+  }, [testimonials.length]);
+
   return (
     <section className="py-16 md:py-24">
       <div className="text-center space-y-10">
         <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground container">
           Quem usa, não volta atrás. 💬
         </h2>
-        <div className="overflow-x-auto scrollbar-hide">
+        <div
+          ref={scrollRef}
+          className="overflow-x-auto scrollbar-hide"
+          onMouseEnter={() => { isPaused.current = true; }}
+          onMouseLeave={() => { isPaused.current = false; }}
+          onTouchStart={() => { isPaused.current = true; }}
+          onTouchEnd={() => { isPaused.current = false; }}
+        >
           <div className="flex gap-6 px-[max(1rem,calc((100vw-1280px)/2+1rem))] w-max">
             {testimonials.map((t, i) => (
               <div key={i} className="bg-surface-elevated rounded-2xl p-6 shadow-card text-left w-[300px] flex-shrink-0">
