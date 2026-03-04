@@ -227,9 +227,9 @@ const HowItWorksSection = () =>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         <div className="space-y-6 my-[73px]">
           {[
-        { step: "1", text: "Instale o Jet Clean entre o vaso e o assento." },
-        { step: "2", text: "Conecte na entrada de água com o adaptador." },
-        { step: "3", text: "Ajuste a pressão e use quando precisar." }].
+        { step: "1", text: "Use seu trono como sempre" },
+        { step: "2", text: "Aperte o botão e ajuste a intensidade. 💧" },
+        { step: "3", text: "Seque rapidinho e siga a vida como uma pessoa civilizada. ✨" }].
         map((item) =>
         <div key={item.step} className="flex items-start gap-4 px-0 my-[69px]">
               <span className="flex-shrink-0 h-10 w-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-display font-bold">
