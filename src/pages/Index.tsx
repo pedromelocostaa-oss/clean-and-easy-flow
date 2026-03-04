@@ -225,20 +225,22 @@ const HowItWorksSection = () =>
         Como funciona na prática
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-        <div className="space-y-6">
-          <p className="text-lg text-foreground font-semibold mb-2">Funciona assim:</p>
+        <div className="space-y-6 my-[73px]">
           {[
-        { step: "1", text: "Faça o \"momento trono\" como sempre. 👑" },
-        { step: "2", text: "Aperte o botão e ajuste a intensidade. 💧" },
-        { step: "3", text: "Seque rapidinho e siga a vida como uma pessoa civilizada. ✨" }].
+        { step: "1", text: "Instale o Jet Clean entre o vaso e o assento." },
+        { step: "2", text: "Conecte na entrada de água com o adaptador." },
+        { step: "3", text: "Ajuste a pressão e use quando precisar." }].
         map((item) =>
-        <div key={item.step} className="flex items-start gap-4">
+        <div key={item.step} className="flex items-start gap-4 px-0 my-[69px]">
               <span className="flex-shrink-0 h-10 w-10 rounded-full bg-primary flex items-center justify-center text-primary-foreground font-display font-bold">
                 {item.step}
               </span>
               <p className="text-foreground text-lg pt-1.5">{item.text}</p>
             </div>
         )}
+          <p className="text-muted-foreground italic">
+            Simples. Rápido. E você sente a diferença no primeiro uso.
+          </p>
           <CTAButton>Quero testar o Jet Clean <ArrowRight className="ml-1 h-4 w-4" /></CTAButton>
         </div>
         <div className="flex justify-center">
