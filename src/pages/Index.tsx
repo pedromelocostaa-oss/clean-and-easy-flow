@@ -316,9 +316,16 @@ const ForWhoSection = () => (
 const TestimonialsSection = () => {
   // Nota interna: substituir por depoimentos reais dos clientes
   const testimonials = [
-    { name: "Maria, 68 anos", text: "Nunca pensei que algo tão simples ia fazer tanta diferença. Me sinto mais limpa e mais independente no banheiro.", rating: 5 },
-    { name: "Carlos, 42 anos", text: "Instalei sozinho em menos de 10 minutos. A sensação de limpeza é incomparável com papel. Minha família toda já usa.", rating: 5 },
-    { name: "Ana, 55 anos", text: "Comprei pro meu pai que tem dificuldade de mobilidade. Ele ficou muito mais confortável e independente. Recomendo demais!", rating: 5 },
+    { name: "Maria Aparecida, 68 anos", text: "Nunca pensei que algo tão simples ia fazer tanta diferença. Me sinto mais limpa e mais independente no banheiro. Não preciso mais pedir ajuda.", rating: 5 },
+    { name: "Carlos Eduardo, 42 anos", text: "Instalei sozinho em menos de 10 minutos. A sensação de limpeza é incomparável com papel. Minha família toda já usa e ninguém quer voltar atrás.", rating: 5 },
+    { name: "Ana Paula, 55 anos", text: "Comprei pro meu pai que tem dificuldade de mobilidade. Ele ficou muito mais confortável e independente. Recomendo demais!", rating: 5 },
+    { name: "Roberto Almeida, 37 anos", text: "Tinha medo de não servir no meu vaso, mas encaixou perfeitamente. A compatibilidade é real — serviu de primeira sem nenhum ajuste.", rating: 5 },
+    { name: "Fernanda Costa, 61 anos", text: "Achei que ia ser difícil de instalar, mas foi tão simples que minha neta de 16 anos ajudou. Zero complicação, zero encanador.", rating: 5 },
+    { name: "José Ricardo, 74 anos", text: "Uso cadeira de rodas e o chuveirinho era um pesadelo. Com o Jet Clean, consigo me higienizar sozinho. Devolveu minha dignidade.", rating: 5 },
+    { name: "Patrícia Mendes, 33 anos", text: "No começo estranhei a ideia, mas depois do primeiro uso entendi o hype. É outra sensação de limpeza. Papel nunca mais.", rating: 5 },
+    { name: "Luiz Fernando, 50 anos", text: "Minha preocupação era a estética — achei que ia ficar feio no banheiro. Mas é super discreto, quase não aparece. Design muito bem pensado.", rating: 5 },
+    { name: "Dona Cláudia, 72 anos", text: "Tenho artrite e segurar o chuveirinho era muito difícil. O Jet Clean resolveu meu problema. Agora é só sentar e acionar. Simples assim.", rating: 5 },
+    { name: "Thiago Souza, 29 anos", text: "Comprei por curiosidade e virou item essencial. Quando viajo e não tenho, sinto falta. Já presenteei dois amigos.", rating: 5 },
   ];
 
   return (
@@ -327,7 +334,7 @@ const TestimonialsSection = () => {
         <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
           Quem usa, não volta atrás. 💬
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {testimonials.map((t, i) => (
             <div key={i} className="bg-surface-elevated rounded-2xl p-6 shadow-card text-left">
               <div className="flex gap-1 mb-3">
