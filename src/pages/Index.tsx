@@ -14,6 +14,7 @@ import problemSection from "@/assets/problem-section.jpg";
 import productCenter from "@/assets/product-center.jpg";
 import installation from "@/assets/installation.jpg";
 import productDetail from "@/assets/product-detail.jpg";
+import bideJetClean from "@/assets/bide-jet-clean.webp";
 
 const CTAButton = ({ children, variant = "cta" as const, className = "" }: { children: React.ReactNode; variant?: "cta" | "cta-outline"; className?: string }) => (
   <Link to="/produto/jet-clean">
@@ -158,9 +159,11 @@ const ProductIntroSection = () => (
           <CTAButton>Quero o meu Jet Clean <ArrowRight className="ml-1 h-4 w-4" /></CTAButton>
         </div>
         <div className="flex justify-center">
-          <div className="w-full max-w-md aspect-square rounded-2xl bg-muted flex items-center justify-center text-muted-foreground shadow-card">
-            <span className="text-sm">📷 Inserir imagem do produto aqui</span>
-          </div>
+          <img
+            src={bideJetClean}
+            alt="Jet Clean instalado no vaso sanitário"
+            className="rounded-2xl shadow-card max-w-md w-full h-auto object-cover"
+          />
         </div>
       </div>
     </div>
