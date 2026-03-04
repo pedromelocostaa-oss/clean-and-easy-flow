@@ -286,7 +286,7 @@ const TestimonialsSection = () => {
             <div key={i} className="bg-surface-elevated rounded-2xl p-6 shadow-card text-left">
               <div className="flex gap-1 mb-3">
                 {Array.from({ length: t.rating }).map((_, j) => (
-                  <span key={j} className="text-accent-foreground">★</span>
+                  <span key={j} style={{ color: 'hsl(45, 93%, 47%)' }}>★</span>
                 ))}
               </div>
               <p className="text-foreground italic mb-4">"{t.text}"</p>
