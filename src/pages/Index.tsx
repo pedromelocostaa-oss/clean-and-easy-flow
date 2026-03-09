@@ -172,49 +172,52 @@ const ProductIntroSection = () =>
 
 // ─── SECTION 4: POR QUE ESCOLHER ───
 const WhyChooseSection = () => {
-  const leftItems = [
-  { title: "Higiene verdadeira", desc: "Papel espalha. Água remove. Não é opinião — é lavagem versus fricção seca." },
-  { title: "Instalação em até 8 minutos", desc: "Sem obra. Você instala entre o vaso e o assento em poucos minutos." }];
-
-  const rightItems = [
-  { title: "Compatível com 97% dos vasos", desc: "Regulagens pensadas para encaixar na maioria dos modelos do Brasil." },
-  { title: "Discreto e moderno", desc: "Depois de instalado, fica quase invisível no seu banheiro." }];
-
+  const items = [
+    { emoji: "💧", title: "Higiene verdadeira", desc: "Papel espalha. Água remove. Não é opinião — é lavagem versus fricção seca." },
+    { emoji: "⏰", title: "Instalação em até 8 minutos", desc: "Sem obra. Você instala entre o vaso e o assento em poucos minutos." },
+    { emoji: "🚽", title: "Compatível com 97% dos vasos", desc: "Regulagens pensadas para encaixar na maioria dos modelos do Brasil." },
+    { emoji: "✨", title: "Discreto e moderno", desc: "Depois de instalado, fica quase invisível no seu banheiro." },
+  ];
 
   return (
     <section className="py-16 md:py-24">
-      <div className="container">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
-          <div className="space-y-8">
-            {leftItems.map((item, i) =>
-            <div key={i} className="text-right md:text-right">
-                <h3 className="font-display font-semibold text-lg text-foreground">{item.title}</h3>
-                <p className="text-sm text-muted-foreground mt-1">{item.desc}</p>
-              </div>
-            )}
-          </div>
-          <div className="flex justify-center">
-            <img
-
-              alt="Jet Clean no vaso"
-              className="shadow-card max-w-[280px] w-full h-auto rounded-2xl border-solid" src="/lovable-uploads/8f265d34-a69d-4877-873c-ddc8a0d6e1d0.png" />
-            
-          </div>
-          <div className="space-y-8">
-            {rightItems.map((item, i) =>
-            <div key={i}>
-                <h3 className="font-display font-semibold text-lg text-foreground">{item.title}</h3>
-                <p className="text-sm text-muted-foreground mt-1">{item.desc}</p>
-              </div>
-            )}
-          </div>
+      <div className="container space-y-12">
+        <div className="text-center space-y-4">
+          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground">
+            Por que escolher o Jet Clean?
+          </h2>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            Pensado para ser simples, eficiente e discreto.
+          </p>
         </div>
-        <div className="text-center mt-10">
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          {items.map((item, i) => (
+            <div
+              key={i}
+              className="rounded-2xl bg-muted/60 p-7 space-y-3 border border-border/50"
+            >
+              <span className="text-3xl">{item.emoji}</span>
+              <h3 className="font-display font-semibold text-lg text-foreground">{item.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="flex justify-center">
+          <img
+            alt="Jet Clean no vaso"
+            className="shadow-card max-w-[320px] w-full h-auto rounded-2xl"
+            src="/lovable-uploads/8f265d34-a69d-4877-873c-ddc8a0d6e1d0.png"
+          />
+        </div>
+
+        <div className="text-center">
           <CTAButton>Ver preço e detalhes <ArrowRight className="ml-1 h-4 w-4" /></CTAButton>
         </div>
       </div>
-    </section>);
-
+    </section>
+  );
 };
 
 // ─── SECTION 5: COMO FUNCIONA ───
