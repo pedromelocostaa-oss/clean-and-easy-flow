@@ -191,25 +191,32 @@ const WhyChooseSection = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {items.map((item, i) => (
-            <div
-              key={i}
-              className="rounded-2xl bg-muted/60 p-7 space-y-3 border border-border/50"
-            >
-              <span className="text-3xl">{item.emoji}</span>
-              <h3 className="font-display font-semibold text-lg text-foreground">{item.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="flex justify-center">
-          <img
-            alt="Jet Clean no vaso"
-            className="shadow-card max-w-[320px] w-full h-auto rounded-2xl"
-            src="/lovable-uploads/8f265d34-a69d-4877-873c-ddc8a0d6e1d0.png"
-          />
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-center">
+          <div className="space-y-5">
+            {items.slice(0, 2).map((item, i) => (
+              <div key={i} className="rounded-2xl bg-muted/60 p-7 space-y-3 border border-border/50">
+                <span className="text-3xl">{item.emoji}</span>
+                <h3 className="font-display font-semibold text-lg text-foreground">{item.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+          <div className="flex justify-center">
+            <img
+              alt="Jet Clean no vaso"
+              className="shadow-card max-w-[320px] w-full h-auto rounded-2xl"
+              src="/lovable-uploads/8f265d34-a69d-4877-873c-ddc8a0d6e1d0.png"
+            />
+          </div>
+          <div className="space-y-5">
+            {items.slice(2, 4).map((item, i) => (
+              <div key={i} className="rounded-2xl bg-muted/60 p-7 space-y-3 border border-border/50">
+                <span className="text-3xl">{item.emoji}</span>
+                <h3 className="font-display font-semibold text-lg text-foreground">{item.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
         </div>
 
         <div className="text-center">
