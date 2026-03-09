@@ -56,7 +56,7 @@ const ProductJetClean = () => {
                 </button>
                 <button
                   onClick={goNext}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-surface-elevated/80 backdrop-blur-sm border border-border/50 flex items-center justify-center text-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-surface-elevated shadow-md"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-surface-elevated/80 backdrop-blur-sm border border-border/50 flex items-center justify-center text-foreground transition-opacity duration-200 hover:bg-surface-elevated shadow-md"
                   aria-label="Próxima foto"
                 >
                   <ChevronRight className="h-5 w-5" />
