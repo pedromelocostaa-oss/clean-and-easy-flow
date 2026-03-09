@@ -49,7 +49,7 @@ const ProductJetClean = () => {
                 {/* Setas de navegação */}
                 <button
                   onClick={goPrev}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-surface-elevated/80 backdrop-blur-sm border border-border/50 flex items-center justify-center text-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-surface-elevated shadow-md"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-surface-elevated/80 backdrop-blur-sm border border-border/50 flex items-center justify-center text-foreground transition-opacity duration-200 hover:bg-surface-elevated shadow-md"
                   aria-label="Foto anterior"
                 >
                   <ChevronLeft className="h-5 w-5" />
