@@ -140,7 +140,7 @@ const ProductJetClean = () => {
               </div>
 
               {/* Trust badges */}
-              <div className="grid grid-cols-3 gap-4 pt-4">
+              <div className="grid grid-cols-2 gap-4 pt-4">
                 {[
                   { icon: Shield, label: "Garantia 30 dias" },
                   { icon: RefreshCw, label: "30 dias p/ trocar" },
