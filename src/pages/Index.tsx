@@ -50,9 +50,9 @@ const HeroSection = () =>
         </div>
         <div className="flex justify-center">
           <img
-          src={productHero}
+
           alt="Jet Clean instalado em vaso sanitário"
-          className="rounded-2xl shadow-card max-w-full h-auto" />
+          className="rounded-2xl shadow-card max-w-full h-auto" src="/lovable-uploads/290a2ef6-671b-42a8-9e56-1543ea2948e6.png" />
         
         </div>
       </div>
