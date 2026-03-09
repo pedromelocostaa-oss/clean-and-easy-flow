@@ -15,7 +15,7 @@ import gallery8 from "@/assets/product-gallery-8.png";
 import gallery9 from "@/assets/product-gallery-9.png";
 
 const galleryImages = [
-  productHero, gallery1, gallery4, gallery5, gallery6, gallery7, gallery8, gallery9, gallery2, gallery3
+  gallery1, gallery4, gallery5, gallery6, gallery7, gallery8, gallery9, gallery2, gallery3
 ];
 
 const ProductJetClean = () => {
