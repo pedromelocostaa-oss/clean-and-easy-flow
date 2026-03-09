@@ -1,10 +1,29 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Check, Truck, Shield, RefreshCw } from "lucide-react";
+import { ArrowRight, ArrowLeft, Check, Truck, Shield, RefreshCw, ChevronLeft, ChevronRight } from "lucide-react";
 import Layout from "@/components/Layout";
 import productHero from "@/assets/product-hero.jpg";
+import gallery1 from "@/assets/product-gallery-1.webp";
+import gallery2 from "@/assets/product-gallery-2.png";
+import gallery3 from "@/assets/product-gallery-3.png";
+import gallery4 from "@/assets/product-gallery-4.png";
+import gallery5 from "@/assets/product-gallery-5.png";
+import gallery6 from "@/assets/product-gallery-6.png";
+import gallery7 from "@/assets/product-gallery-7.png";
+import gallery8 from "@/assets/product-gallery-8.png";
+import gallery9 from "@/assets/product-gallery-9.png";
+
+const galleryImages = [
+  productHero, gallery1, gallery4, gallery5, gallery6, gallery7, gallery8, gallery9, gallery2, gallery3
+];
 
 const ProductJetClean = () => {
+  const [currentImage, setCurrentImage] = useState(0);
+
+  const goNext = () => setCurrentImage((prev) => (prev + 1) % galleryImages.length);
+  const goPrev = () => setCurrentImage((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+
   return (
     <Layout>
       {/* Sticky CTA mobile */}
@@ -17,13 +36,61 @@ const ProductJetClean = () => {
       <section className="py-8 md:py-16 pb-28 md:pb-16">
         <div className="container">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
-            {/* Imagem do produto */}
-            <div className="bg-surface-soft rounded-2xl overflow-hidden">
-              <img
-                src={productHero}
-                alt="Jet Clean — Ducha Higiênica da Evacuei"
-                className="w-full h-auto object-cover"
-              />
+            {/* Galeria de imagens */}
+            <div className="space-y-3">
+              {/* Imagem principal */}
+              <div className="relative bg-surface-soft rounded-2xl overflow-hidden group cursor-pointer select-none">
+                <img
+                  src={galleryImages[currentImage]}
+                  alt={`Jet Clean — Foto ${currentImage + 1}`}
+                  className="w-full h-auto object-cover aspect-square"
+                />
+                
+                {/* Setas de navegação */}
+                <button
+                  onClick={goPrev}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-surface-elevated/80 backdrop-blur-sm border border-border/50 flex items-center justify-center text-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-surface-elevated shadow-md"
+                  aria-label="Foto anterior"
+                >
+                  <ChevronLeft className="h-5 w-5" />
+                </button>
+                <button
+                  onClick={goNext}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-surface-elevated/80 backdrop-blur-sm border border-border/50 flex items-center justify-center text-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-surface-elevated shadow-md"
+                  aria-label="Próxima foto"
+                >
+                  <ChevronRight className="h-5 w-5" />
+                </button>
+
+                {/* Indicador */}
+                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-foreground/60 backdrop-blur-sm text-background text-xs font-medium px-3 py-1 rounded-full">
+                  {currentImage + 1} / {galleryImages.length}
+                </div>
+
+                {/* Hint de swipe no mobile */}
+                <div className="absolute bottom-3 right-3 md:hidden bg-foreground/60 backdrop-blur-sm text-background text-xs px-2 py-1 rounded-full flex items-center gap-1">
+                  <ChevronLeft className="h-3 w-3" />
+                  Deslize
+                  <ChevronRight className="h-3 w-3" />
+                </div>
+              </div>
+
+              {/* Thumbnails */}
+              <div className="flex gap-2 overflow-x-auto scrollbar-hide pb-1">
+                {galleryImages.map((img, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCurrentImage(i)}
+                    className={`flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-xl overflow-hidden border-2 transition-all duration-200 ${
+                      i === currentImage
+                        ? "border-primary ring-2 ring-primary/20"
+                        : "border-border/50 opacity-60 hover:opacity-100"
+                    }`}
+                  >
+                    <img src={img} alt={`Miniatura ${i + 1}`} className="w-full h-full object-cover" />
+                  </button>
+                ))}
+              </div>
             </div>
 
             {/* Informações do produto */}
