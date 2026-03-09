@@ -1,8 +1,22 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Check, Truck, Shield, RefreshCw } from "lucide-react";
+import { ArrowRight, ArrowLeft, Check, Truck, Shield, RefreshCw, ChevronLeft, ChevronRight } from "lucide-react";
 import Layout from "@/components/Layout";
 import productHero from "@/assets/product-hero.jpg";
+import gallery1 from "@/assets/product-gallery-1.webp";
+import gallery2 from "@/assets/product-gallery-2.png";
+import gallery3 from "@/assets/product-gallery-3.png";
+import gallery4 from "@/assets/product-gallery-4.png";
+import gallery5 from "@/assets/product-gallery-5.png";
+import gallery6 from "@/assets/product-gallery-6.png";
+import gallery7 from "@/assets/product-gallery-7.png";
+import gallery8 from "@/assets/product-gallery-8.png";
+import gallery9 from "@/assets/product-gallery-9.png";
+
+const galleryImages = [
+  productHero, gallery1, gallery4, gallery5, gallery6, gallery7, gallery8, gallery9, gallery2, gallery3
+];
 
 const ProductJetClean = () => {
   return (
