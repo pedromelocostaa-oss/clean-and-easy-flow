@@ -15,7 +15,7 @@ import gallery8 from "@/assets/product-gallery-8.png";
 import gallery9 from "@/assets/product-gallery-9.png";
 
 const galleryImages = [
-  gallery1, gallery4, gallery6, gallery7, gallery8, gallery9, gallery2, gallery3
+  gallery1, gallery4, gallery7, gallery8, gallery9, gallery2, gallery3, gallery6
 ];
 
 const ProductJetClean = () => {
@@ -49,14 +49,14 @@ const ProductJetClean = () => {
                 {/* Setas de navegação */}
                 <button
                   onClick={goPrev}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-surface-elevated/80 backdrop-blur-sm border border-border/50 flex items-center justify-center text-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-surface-elevated shadow-md"
+                  className="absolute left-3 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-surface-elevated/80 backdrop-blur-sm border border-border/50 flex items-center justify-center text-foreground transition-opacity duration-200 hover:bg-surface-elevated shadow-md"
                   aria-label="Foto anterior"
                 >
                   <ChevronLeft className="h-5 w-5" />
                 </button>
                 <button
                   onClick={goNext}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-surface-elevated/80 backdrop-blur-sm border border-border/50 flex items-center justify-center text-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-surface-elevated shadow-md"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 h-10 w-10 rounded-full bg-surface-elevated/80 backdrop-blur-sm border border-border/50 flex items-center justify-center text-foreground transition-opacity duration-200 hover:bg-surface-elevated shadow-md"
                   aria-label="Próxima foto"
                 >
                   <ChevronRight className="h-5 w-5" />
@@ -140,10 +140,9 @@ const ProductJetClean = () => {
               </div>
 
               {/* Trust badges */}
-              <div className="grid grid-cols-3 gap-4 pt-4">
+              <div className="grid grid-cols-2 gap-4 pt-4">
                 {[
-                  { icon: Truck, label: "Frete Grátis" },
-                  { icon: Shield, label: "Garantia 1 Ano" },
+                  { icon: Shield, label: "Garantia 30 dias" },
                   { icon: RefreshCw, label: "30 dias p/ trocar" },
                 ].map((badge, i) => (
                   <div key={i} className="flex flex-col items-center gap-1.5 text-center">
