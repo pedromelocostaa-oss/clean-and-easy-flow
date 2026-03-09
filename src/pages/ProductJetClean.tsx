@@ -142,8 +142,7 @@ const ProductJetClean = () => {
               {/* Trust badges */}
               <div className="grid grid-cols-3 gap-4 pt-4">
                 {[
-                  { icon: Truck, label: "Frete Grátis" },
-                  { icon: Shield, label: "Garantia 1 Ano" },
+                  { icon: Shield, label: "Garantia 30 dias" },
                   { icon: RefreshCw, label: "30 dias p/ trocar" },
                 ].map((badge, i) => (
                   <div key={i} className="flex flex-col items-center gap-1.5 text-center">
