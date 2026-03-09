@@ -311,7 +311,7 @@ const ForWhoSection = () =>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
         {[
       { emoji: "👵", title: "Idosos", desc: "Mais independência no banheiro, com menos esforço." },
-      { emoji: "🦿", title: "Mobilidade reduzida", desc: "Menos movimento, mais praticidade." },
+      { emoji: "🦾", title: "Mobilidade reduzida", desc: "Menos movimento, mais praticidade." },
       { emoji: "✨", title: "Quem preza por higiene completa", desc: "Limpeza com água, sem improviso." }].
       map((card, i) =>
       <div key={i} className="bg-surface-elevated rounded-2xl p-8 shadow-card text-center">
