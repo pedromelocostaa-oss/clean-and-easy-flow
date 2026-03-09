@@ -262,9 +262,9 @@ const InstallationSection = () =>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         <div className="flex justify-center">
           <img
-          src={productDetail}
+
           alt="Detalhe do Jet Clean instalado"
-          className="rounded-2xl shadow-card max-w-full h-auto" />
+          className="rounded-2xl shadow-card max-w-full h-auto" src="/lovable-uploads/b5abf592-5db6-4d6a-bd63-14593e41b464.png" />
         
         </div>
         <div className="space-y-6">
