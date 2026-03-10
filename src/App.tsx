@@ -21,6 +21,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/produto/jet-clean" element={<ProductJetClean />} />
           <Route path="/como-instalar" element={<ComoInstalar />} />
+          <Route path="/como-usar" element={<ComoUsar />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

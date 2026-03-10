@@ -56,6 +56,13 @@ const Header = () => {
           >
             Como Instalar
           </Link>
+          <Link
+            to="/como-usar"
+            className="block text-sm font-medium text-muted-foreground"
+            onClick={() => setMobileOpen(false)}
+          >
+            Como Usar
+          </Link>
           <Link to="/produto/jet-clean" onClick={() => setMobileOpen(false)}>
             <Button variant="cta" className="w-full">
               Quero o meu →
