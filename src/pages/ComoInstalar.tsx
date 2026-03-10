@@ -26,7 +26,7 @@ const steps = [
   number: 3,
   title: "Encaixe o Jet Clean no vaso",
   description: [
-  "Posicione o Jet Clean sobre o vaso sanitário, entre o assento e a louça. Dependendo do modelo, você terá flanges ajustáveis — alinhe-os com os furos de fixação do assento.",
+  "Posicione o Jet Clean sobre o vaso sanitário, entre o assento e o vaso.\n Dependendo do modelo, você terá flanges ajustáveis — alinhe-os com os furos de fixação do assento.",
   "Certifique-se de que o bico esteja centralizado e o mais próximo possível da parte traseira do vaso, sem encostar na louça. Ajuste a posição do bico pelo console do aparelho."]
 
 },
