@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import ProductJetClean from "./pages/ProductJetClean";
 import ComoInstalar from "./pages/ComoInstalar";
+import ComoUsar from "./pages/ComoUsar";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
