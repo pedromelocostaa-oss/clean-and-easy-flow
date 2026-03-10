@@ -18,6 +18,9 @@ const Header = () => {
           <Link to="/" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
             Início
           </Link>
+          <Link to="/como-instalar" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+            Como Instalar
+          </Link>
           <Link to="/produto/jet-clean">
             <Button variant="cta" size="default">
               Quero o meu →
@@ -42,6 +45,13 @@ const Header = () => {
             onClick={() => setMobileOpen(false)}
           >
             Início
+          </Link>
+          <Link
+            to="/como-instalar"
+            className="block text-sm font-medium text-muted-foreground"
+            onClick={() => setMobileOpen(false)}
+          >
+            Como Instalar
           </Link>
           <Link to="/produto/jet-clean" onClick={() => setMobileOpen(false)}>
             <Button variant="cta" className="w-full">
