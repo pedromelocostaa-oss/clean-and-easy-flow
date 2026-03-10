@@ -21,6 +21,9 @@ const Header = () => {
           <Link to="/como-instalar" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
             Como Instalar
           </Link>
+          <Link to="/como-usar" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+            Como Usar
+          </Link>
           <Link to="/produto/jet-clean">
             <Button variant="cta" size="default">
               Quero o meu →
