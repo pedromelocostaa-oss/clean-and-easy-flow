@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import ProductJetClean from "./pages/ProductJetClean";
 import ComoInstalar from "./pages/ComoInstalar";
+import ComoUsar from "./pages/ComoUsar";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -20,6 +21,7 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/produto/jet-clean" element={<ProductJetClean />} />
           <Route path="/como-instalar" element={<ComoInstalar />} />
+          <Route path="/como-usar" element={<ComoUsar />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
