@@ -1,7 +1,18 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Check, Shield, RefreshCw, ChevronLeft, ChevronRight, Star, Package, Droplets, Wrench, Eye } from "lucide-react";
+
+const testimonials = [
+  { name: "Maria Aparecida, 68 anos", text: "Nunca pensei que algo tão simples ia fazer tanta diferença. Me sinto mais limpa e mais independente no banheiro.", rating: 5 },
+  { name: "Carlos Eduardo, 42 anos", text: "Instalei sozinho em menos de 10 minutos. A sensação de limpeza é incomparável com papel. Minha família toda já usa.", rating: 5 },
+  { name: "Ana Paula, 55 anos", text: "Comprei pro meu pai que tem dificuldade de mobilidade. Ele ficou muito mais confortável e independente. Recomendo demais!", rating: 5 },
+  { name: "Roberto Almeida, 37 anos", text: "Tinha medo de não servir no meu vaso, mas encaixou perfeitamente. Serviu de primeira sem nenhum ajuste.", rating: 5 },
+  { name: "Fernanda Costa, 61 anos", text: "Achei que ia ser difícil de instalar, mas foi tão simples que minha neta de 16 anos ajudou. Zero complicação.", rating: 5 },
+  { name: "José Ricardo, 74 anos", text: "Uso cadeira de rodas e o chuveirinho era um pesadelo. Com o Jet Clean, consigo me higienizar sozinho.", rating: 5 },
+  { name: "Patrícia Mendes, 33 anos", text: "No começo estranhei a ideia, mas depois do primeiro uso entendi o hype. Papel nunca mais.", rating: 5 },
+  { name: "Thiago Souza, 29 anos", text: "Comprei por curiosidade e virou item essencial. Quando viajo e não tenho, sinto falta.", rating: 5 },
+];
 import Layout from "@/components/Layout";
 import gallery1 from "@/assets/product-gallery-1.webp";
 import gallery2 from "@/assets/product-gallery-2.png";
@@ -199,8 +210,83 @@ const ProductJetClean = () => {
             </div>
           </div>
         </div>
+
+        {/* Seção de Depoimentos */}
+        <TestimonialsProductSection />
       </section>
     </Layout>
+  );
+};
+
+const TestimonialsProductSection = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const isPaused = useRef(false);
+
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+    const cardWidth = 300 + 16;
+    let currentIndex = 0;
+    const interval = setInterval(() => {
+      if (isPaused.current || !container) return;
+      currentIndex++;
+      if (currentIndex >= testimonials.length - 2) {
+        currentIndex = 0;
+        container.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        container.scrollTo({ left: currentIndex * cardWidth, behavior: "smooth" });
+      }
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="mt-16 md:mt-24 space-y-6">
+      <div className="flex items-center justify-between">
+        <div className="space-y-1">
+          <h2 className="font-display text-2xl md:text-3xl font-bold text-foreground">
+            O que nossos clientes dizem 💬
+          </h2>
+          <p className="text-sm text-muted-foreground">4.9 de 5 — baseado em 127 avaliações</p>
+        </div>
+        <div className="hidden md:flex gap-0.5">
+          {[...Array(5)].map((_, i) => (
+            <Star key={i} className="h-5 w-5 fill-[hsl(var(--star))] text-[hsl(var(--star))]" />
+          ))}
+        </div>
+      </div>
+
+      <div
+        ref={scrollRef}
+        className="overflow-x-auto scrollbar-hide -mx-4 px-4"
+        onMouseEnter={() => { isPaused.current = true; }}
+        onMouseLeave={() => { isPaused.current = false; }}
+        onTouchStart={() => { isPaused.current = true; }}
+        onTouchEnd={() => { isPaused.current = false; }}
+      >
+        <div className="flex gap-4 w-max">
+          {testimonials.map((t, i) => (
+            <div
+              key={i}
+              className="bg-surface-elevated rounded-2xl p-5 shadow-sm border border-border/50 w-[300px] flex-shrink-0 hover:shadow-md transition-shadow"
+            >
+              <div className="flex gap-0.5 mb-3">
+                {Array.from({ length: t.rating }).map((_, j) => (
+                  <Star key={j} className="h-3.5 w-3.5 fill-[hsl(var(--star))] text-[hsl(var(--star))]" />
+                ))}
+              </div>
+              <p className="text-foreground text-sm leading-relaxed mb-4">"{t.text}"</p>
+              <div className="flex items-center gap-2.5 pt-3 border-t border-border/50">
+                <div className="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center">
+                  <span className="text-primary font-display font-bold text-xs">{t.name.charAt(0)}</span>
+                </div>
+                <p className="text-xs font-semibold text-muted-foreground">{t.name}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 };
 
