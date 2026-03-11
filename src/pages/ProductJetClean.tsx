@@ -288,7 +288,6 @@ const TestimonialsProductSection = () => {
       </div>
     </div>
   );
-  );
 };
 
 export default ProductJetClean;
