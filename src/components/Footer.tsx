@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Droplets } from "lucide-react";
+import vacueiLogo from "@/assets/vacuei-logo.png";
 
 const Footer = () => {
   return (
