@@ -101,7 +101,7 @@ const ProductInfo = () => (
   <div className="space-y-6">
     {/* Header */}
     <div className="space-y-3">
-      <p className="text-xs font-bold text-primary tracking-[0.2em] uppercase font-display">EVACUEI</p>
+      <p className="text-xs font-bold text-primary tracking-[0.2em] uppercase font-display">VACUEI</p>
       <h1 className="font-display text-3xl md:text-[2.5rem] font-bold text-foreground leading-[1.15]">
         Ducha Higiênica<br />Jet Clean
       </h1>

@@ -183,7 +183,7 @@ const ProductIntroSection = () => (
             </h2>
           </div>
           <p className="text-muted-foreground text-lg leading-relaxed">
-            O Jet Clean, um produto da Evacuei, é um bidê de acoplar instalado em 8 minutos no seu vaso sanitário. Ele usa um jato de água direcionado para uma higienização eficiente — de forma prática, econômica e simples.
+            O Jet Clean, um produto da VACUEI, é um bidê de acoplar instalado em 8 minutos no seu vaso sanitário. Ele usa um jato de água direcionado para uma higienização eficiente — de forma prática, econômica e simples. instalado em 8 minutos no seu vaso sanitário. Ele usa um jato de água direcionado para uma higienização eficiente — de forma prática, econômica e simples.
           </p>
           <div className="space-y-3">
             {[

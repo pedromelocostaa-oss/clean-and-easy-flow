@@ -11,8 +11,7 @@ const Header = () => {
     <header className="sticky top-0 z-50 bg-surface-elevated/95 backdrop-blur-md border-b border-border">
       <div className="container flex items-center justify-between h-16">
         <Link to="/" className="flex items-center gap-2">
-          <Droplets className="h-7 w-7 text-primary" />
-          <span className="font-display font-bold text-xl text-foreground">Evacuei</span>
+          <img src={vacueiLogo} alt="VACUEI" className="h-7" />
         </Link>
 
         <nav className="hidden md:flex items-center gap-8">
