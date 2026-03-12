@@ -8,8 +8,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
           <div>
             <div className="flex items-center gap-2 mb-3">
-              <Droplets className="h-6 w-6 text-primary" />
-              <span className="font-display font-bold text-lg">Evacuei</span>
+              <img src={vacueiLogo} alt="VACUEI" className="h-6 brightness-0 invert" />
             </div>
             <p className="text-sm opacity-70">
               Higiene com água. Mais conforto, mais autonomia.
