@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
-import { Droplets, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import vacueiLogo from "@/assets/vacuei-logo.png";
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
