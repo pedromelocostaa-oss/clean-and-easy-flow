@@ -1,7 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Space+Grotesk:wght@400;500;600;700&display=swap');
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Manrope:wght@400;500;600;700;800&family=Caveat:wght@600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -9,54 +6,66 @@
 
 @layer base {
   :root {
-    --background: 209 40% 96%;
-    --foreground: 222 47% 11%;
+    /* Vacuei design tokens */
+    --vacuei-bg:         38 60% 91%;
+    --vacuei-bg-alt:     38 50% 87%;
+    --vacuei-paper:      42 70% 95%;
+    --vacuei-ink:        218 84% 23%;
+    --vacuei-ink-soft:   218 36% 35%;
+    --vacuei-mint:       156 42% 76%;
+    --vacuei-mint-deep:  162 30% 52%;
+    --vacuei-pop:        18 60% 45%;
+    --vacuei-pop-text:   42 70% 95%;
+    --vacuei-star:       42 88% 60%;
 
-    --card: 210 40% 98%;
-    --card-foreground: 222 47% 11%;
+    --background: var(--vacuei-bg);
+    --foreground: var(--vacuei-ink);
 
-    --popover: 214 31% 91%;
-    --popover-foreground: 222 47% 11%;
+    --card: var(--vacuei-paper);
+    --card-foreground: var(--vacuei-ink);
 
-    --primary: 200 98% 39%;
-    --primary-foreground: 204 100% 97%;
+    --popover: var(--vacuei-paper);
+    --popover-foreground: var(--vacuei-ink);
 
-    --secondary: 215 24% 26%;
-    --secondary-foreground: 210 40% 98%;
+    --primary: var(--vacuei-ink);
+    --primary-foreground: var(--vacuei-paper);
 
-    --muted: 215 20% 65%;
-    --muted-foreground: 222 47% 11%;
+    --secondary: var(--vacuei-mint);
+    --secondary-foreground: var(--vacuei-ink);
 
-    --accent: 210 40% 98%;
-    --accent-foreground: 215 19% 34%;
+    --muted: var(--vacuei-bg-alt);
+    --muted-foreground: var(--vacuei-ink-soft);
 
-    --star: 45 93% 47%;
+    --accent: var(--vacuei-mint);
+    --accent-foreground: var(--vacuei-ink);
+
+    --star: var(--vacuei-star);
 
     --destructive: 0 72% 50%;
     --destructive-foreground: 0 85% 97%;
 
-    --border: 212 26% 83%;
-    --input: 212 26% 83%;
-    --ring: 200 98% 39%;
+    --border: 218 30% 80%;
+    --input: 218 30% 80%;
+    --ring: var(--vacuei-ink);
 
     --radius: 0.5rem;
 
     --success: 160 60% 45%;
     --success-foreground: 0 0% 100%;
 
-    --price: 213 84% 45%;
+    --price: var(--vacuei-pop);
     --price-old: 210 10% 60%;
     --discount: 0 72% 51%;
 
-    --surface-elevated: 0 0% 100%;
-    --surface-soft: 213 30% 97%;
+    --surface-elevated: var(--vacuei-paper);
+    --surface-soft: var(--vacuei-bg-alt);
 
-    --font-display: 'Space Grotesk', sans-serif;
-    --font-body: 'DM Sans', sans-serif;
+    --font-display: 'Archivo Black', system-ui, sans-serif;
+    --font-body: 'Manrope', system-ui, sans-serif;
 
-    --shadow-soft: 0 2px 15px -3px hsl(213 84% 58% / 0.08), 0 4px 6px -4px hsl(213 84% 58% / 0.05);
-    --shadow-card: 0 4px 25px -5px hsl(210 25% 12% / 0.06), 0 10px 10px -5px hsl(210 25% 12% / 0.02);
-    --shadow-cta: 0 4px 14px -3px hsl(213 84% 58% / 0.35);
+    --shadow-soft: 0 2px 8px hsl(218 84% 23% / 0.08);
+    --shadow-card: 0 4px 16px hsl(218 84% 23% / 0.06);
+    --shadow-cta: 4px 4px 0 hsl(var(--vacuei-ink));
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 222 47% 11%;
@@ -135,13 +144,17 @@
     @apply border-border;
   }
 
+  html {
+    font-family: 'Manrope', system-ui, sans-serif;
+  }
+
   body {
     @apply bg-background text-foreground;
-    font-family: var(--font-body);
+    font-family: 'Manrope', system-ui, sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
+    font-family: 'Archivo Black', system-ui, sans-serif;
   }
 }
 

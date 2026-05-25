@@ -14,49 +14,28 @@ export default {
   	},
   	extend: {
   		fontFamily: {
-  			display: [
-  				'Space Grotesk',
-  				'sans-serif'
-  			],
-  			body: [
-  				'DM Sans',
-  				'sans-serif'
-  			],
+  			display: ['"Archivo Black"', 'system-ui', 'sans-serif'],
+  			body: ['Manrope', 'system-ui', 'sans-serif'],
+  			marker: ['Caveat', 'cursive'],
   			sans: [
-  				'Inter',
-  				'ui-sans-serif',
+  				'Manrope',
   				'system-ui',
-  				'-apple-system',
-  				'BlinkMacSystemFont',
-  				'Segoe UI',
-  				'Roboto',
-  				'Helvetica Neue',
-  				'Arial',
-  				'Noto Sans',
   				'sans-serif'
   			],
-  			serif: [
-  				'Lora',
-  				'ui-serif',
-  				'Georgia',
-  				'Cambria',
-  				'Times New Roman',
-  				'Times',
-  				'serif'
-  			],
-  			mono: [
-  				'Space Mono',
-  				'ui-monospace',
-  				'SFMono-Regular',
-  				'Menlo',
-  				'Monaco',
-  				'Consolas',
-  				'Liberation Mono',
-  				'Courier New',
-  				'monospace'
-  			]
   		},
   		colors: {
+  			vacuei: {
+  				bg: 'hsl(var(--vacuei-bg))',
+  				'bg-alt': 'hsl(var(--vacuei-bg-alt))',
+  				paper: 'hsl(var(--vacuei-paper))',
+  				ink: 'hsl(var(--vacuei-ink))',
+  				'ink-soft': 'hsl(var(--vacuei-ink-soft))',
+  				mint: 'hsl(var(--vacuei-mint))',
+  				'mint-deep': 'hsl(var(--vacuei-mint-deep))',
+  				pop: 'hsl(var(--vacuei-pop))',
+  				'pop-text': 'hsl(var(--vacuei-pop-text))',
+  				star: 'hsl(var(--vacuei-star))',
+  			},
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',
   			ring: 'hsl(var(--ring))',
@@ -119,36 +98,28 @@ export default {
   		},
   		keyframes: {
   			'accordion-down': {
-  				from: {
-  					height: '0'
-  				},
-  				to: {
-  					height: 'var(--radix-accordion-content-height)'
-  				}
+  				from: { height: '0' },
+  				to: { height: 'var(--radix-accordion-content-height)' }
   			},
   			'accordion-up': {
-  				from: {
-  					height: 'var(--radix-accordion-content-height)'
-  				},
-  				to: {
-  					height: '0'
-  				}
+  				from: { height: 'var(--radix-accordion-content-height)' },
+  				to: { height: '0' }
   			},
   			'fade-up': {
-  				from: {
-  					opacity: '0',
-  					transform: 'translateY(20px)'
-  				},
-  				to: {
-  					opacity: '1',
-  					transform: 'translateY(0)'
-  				}
-  			}
+  				from: { opacity: '0', transform: 'translateY(20px)' },
+  				to: { opacity: '1', transform: 'translateY(0)' }
+  			},
+  			marquee: {
+  				from: { transform: 'translateX(0)' },
+  				to: { transform: 'translateX(-50%)' },
+  			},
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
   			'accordion-up': 'accordion-up 0.2s ease-out',
-  			'fade-up': 'fade-up 0.6s ease-out forwards'
+  			'fade-up': 'fade-up 0.6s ease-out forwards',
+  			'marquee': 'marquee 22s linear infinite',
+  			'marquee-slow': 'marquee 28s linear infinite',
   		},
   		boxShadow: {
   			'2xs': 'var(--shadow-2xs)',
@@ -157,7 +128,11 @@ export default {
   			md: 'var(--shadow-md)',
   			lg: 'var(--shadow-lg)',
   			xl: 'var(--shadow-xl)',
-  			'2xl': 'var(--shadow-2xl)'
+  			'2xl': 'var(--shadow-2xl)',
+  			'pop-sm': '3px 3px 0 hsl(var(--vacuei-ink))',
+  			'pop-md': '4px 4px 0 hsl(var(--vacuei-ink))',
+  			'pop-lg': '6px 6px 0 hsl(var(--vacuei-ink))',
+  			'pop-xl': '8px 8px 0 hsl(var(--vacuei-ink))',
   		}
   	}
   },
