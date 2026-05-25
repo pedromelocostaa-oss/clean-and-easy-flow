@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Check } from "lucide-react";
 import Layout from "@/components/Layout";
@@ -710,6 +710,166 @@ const reviews = [
   { name: 'Roberto Almeida', loc: 'Salvador · BA', age: 51, date: 'há 2 semanas', tag: 'Estética', t: 'Minha maior preocupação era estética — banheiro pequeno, não queria mais um cabo de fora. O Jet Clean é discreto de verdade. Depois de instalado quase não aparece.', tone: 'paper' as const, stars: 4, withPhoto: false },
 ];
 
+// Triplicado para loop infinito sem salto visível
+const reviewsTriple = [...reviews, ...reviews, ...reviews];
+
+// Card de review reutilizável
+const ReviewCard = ({ review: q }: { review: typeof reviews[0] }) => (
+  <div
+    className="border-[1.5px] border-vacuei-ink rounded-[18px] p-5 lg:p-6 flex flex-col gap-3.5 h-full"
+    style={{
+      background: q.tone === 'navy' ? 'hsl(var(--vacuei-ink))' : q.tone === 'mint' ? 'hsl(var(--vacuei-mint))' : 'hsl(var(--vacuei-paper))',
+      boxShadow: '5px 5px 0 hsl(var(--vacuei-ink))',
+      color: q.tone === 'navy' ? 'hsl(var(--vacuei-paper))' : 'hsl(var(--vacuei-ink))',
+    }}
+  >
+    <div className="flex justify-between items-center">
+      <Stars
+        count={q.stars}
+        color={q.tone === 'navy' ? 'hsl(var(--vacuei-mint))' : 'hsl(var(--vacuei-star))'}
+        size={14}
+      />
+      <span
+        className="font-body font-bold text-[9px] tracking-[0.06em] uppercase flex items-center gap-1"
+        style={{ color: q.tone === 'navy' ? 'hsl(var(--vacuei-mint))' : 'hsl(var(--vacuei-mint-deep))' }}
+      >
+        <Check className="w-2.5 h-2.5" strokeWidth={3} />
+        COMPRA VERIFICADA
+      </span>
+    </div>
+
+    <span
+      className="inline-block self-start font-body font-bold text-[10px] px-2.5 py-1 rounded-full tracking-[0.04em]"
+      style={{
+        background: q.tone === 'navy' ? 'hsl(var(--vacuei-mint) / 0.15)' : 'hsl(var(--vacuei-bg))',
+        color: q.tone === 'navy' ? 'hsl(var(--vacuei-mint))' : 'hsl(var(--vacuei-ink))',
+        border: `1px solid ${q.tone === 'navy' ? 'hsl(var(--vacuei-mint) / 0.4)' : 'hsl(var(--vacuei-ink) / 0.2)'}`,
+      }}
+    >
+      {q.tag}
+    </span>
+
+    <p className="font-body font-medium text-[13px] lg:text-[14px] leading-relaxed flex-1" style={{ opacity: 0.9 }}>
+      "{q.t}"
+    </p>
+
+    {q.withPhoto && (
+      <div className="flex gap-1.5">
+        {[0, 1].map((k) => (
+          <div
+            key={k}
+            className="w-14 h-14 rounded-lg flex-shrink-0 border border-vacuei-ink/25 flex items-center justify-center"
+            style={{ background: 'hsl(var(--vacuei-bg))' }}
+          >
+            <span className="font-body text-[8px] text-vacuei-ink-soft opacity-50">Foto</span>
+          </div>
+        ))}
+      </div>
+    )}
+
+    <div
+      className="flex items-center gap-2.5 pt-3"
+      style={{ borderTop: `1px solid ${q.tone === 'navy' ? 'hsl(var(--vacuei-mint) / 0.25)' : 'hsl(var(--vacuei-ink) / 0.15)'}` }}
+    >
+      <div
+        className="w-9 h-9 rounded-full flex-shrink-0 flex items-center justify-center font-display text-[14px]"
+        style={{
+          background: q.tone === 'navy' ? 'hsl(var(--vacuei-mint))' : 'hsl(var(--vacuei-ink))',
+          color: q.tone === 'navy' ? 'hsl(var(--vacuei-ink))' : 'hsl(var(--vacuei-paper))',
+        }}
+      >
+        {q.name[0]}
+      </div>
+      <div className="flex-1 min-w-0">
+        <div className="font-body font-extrabold text-[13px] leading-none">{q.name}, {q.age}</div>
+        <div className="font-body text-[11px] mt-0.5 opacity-60">{q.loc}</div>
+      </div>
+      <span className="font-body text-[11px] opacity-60 flex-shrink-0">{q.date}</span>
+    </div>
+  </div>
+);
+
+// Carousel: 3 cards visíveis no desktop, 1 no mobile
+// Cards adjacentes ficam parcialmente visíveis nas bordas
+const ReviewsCarousel = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const posRef = useRef(reviews.length); // começa na cópia do meio
+  const resetRef = useRef<ReturnType<typeof setTimeout>>();
+  const [pos, setPos] = useState(reviews.length);
+  const [animated, setAnimated] = useState(false);
+  const [cw, setCw] = useState(1200);
+
+  const N = reviews.length; // 6
+  const isMobile = cw < 640;
+  const visible = isMobile ? 1 : 3;
+  const gap = isMobile ? 12 : 20;
+  // "side" = quanto do card adjacente aparece em cada lado
+  const side = isMobile ? 36 : 52;
+  const cardW = Math.max(180, (cw - 2 * side - (visible - 1) * gap) / visible);
+
+  // translateX para posicionar o card `p` como primeiro dos 3 visíveis,
+  // deixando `side` px do card anterior aparecendo à esquerda
+  const getX = (p: number) => -(p * (cardW + gap)) + side;
+
+  // Observa largura do container para cálculos responsivos
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([e]) => setCw(e.contentRect.width));
+    ro.observe(el);
+    setCw(el.getBoundingClientRect().width);
+    return () => ro.disconnect();
+  }, []);
+
+  // Avança 1 card a cada 4s; ao chegar no fim da 2ª cópia, salta sem animação para a cópia do meio
+  useEffect(() => {
+    const tick = () => {
+      const next = posRef.current + 1;
+      posRef.current = next;
+      setAnimated(true);
+      setPos(next);
+
+      // Quando saímos da 2ª cópia (pos >= N*2), resetamos para cópia do meio sem animação
+      if (next >= N * 2) {
+        clearTimeout(resetRef.current);
+        resetRef.current = setTimeout(() => {
+          posRef.current = N;
+          setAnimated(false);
+          setPos(N);
+          // Reabilita animação no próximo ciclo
+          setTimeout(() => setAnimated(true), 50);
+        }, 570); // 20ms após o fim da transição (550ms)
+      }
+    };
+
+    const interval = setInterval(tick, 4000);
+    return () => {
+      clearInterval(interval);
+      clearTimeout(resetRef.current);
+    };
+  }, [N]);
+
+  return (
+    <div ref={containerRef} className="overflow-hidden w-full">
+      <div
+        className="flex"
+        style={{
+          gap: `${gap}px`,
+          transform: `translateX(${getX(pos)}px)`,
+          transition: animated ? 'transform 0.55s cubic-bezier(0.4,0,0.2,1)' : 'none',
+          willChange: 'transform',
+        }}
+      >
+        {reviewsTriple.map((q, i) => (
+          <div key={i} style={{ width: `${cardW}px`, flexShrink: 0 }}>
+            <ReviewCard review={q} />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 const ReviewsSection = () => {
   const dist = [
     { s: 5, pct: 78 },
@@ -724,7 +884,6 @@ const ReviewsSection = () => {
     { v: '96%', l: 'sentiu diferença no 1º uso' },
     { v: '93%', l: 'compraria de novo' },
   ];
-  const filters = ['Tudo (847)', '★ Verificadas (812)', 'Com foto (218)', 'Idosos/PCDs (134)', 'Instalei sozinho (594)', 'Mais recentes'];
 
   return (
     <section className="bg-vacuei-bg py-12 lg:py-[100px]">
@@ -743,7 +902,7 @@ const ReviewsSection = () => {
         </div>
 
         {/* Rating cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr_1.2fr] gap-4 lg:gap-5 mb-8 lg:mb-10">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr_1.2fr] gap-4 lg:gap-5 mb-10 lg:mb-12">
           {/* Big rating */}
           <div
             className="bg-vacuei-paper border-[1.5px] border-vacuei-ink rounded-[18px] lg:rounded-[20px] p-7 lg:p-8 flex flex-col justify-center"
@@ -775,11 +934,7 @@ const ReviewsSection = () => {
                       className="h-full rounded-full"
                       style={{
                         width: `${d.pct}%`,
-                        background: d.s >= 4
-                          ? 'hsl(var(--vacuei-mint-deep))'
-                          : d.s === 3
-                          ? 'hsl(var(--vacuei-star))'
-                          : 'hsl(var(--vacuei-pop))',
+                        background: d.s >= 4 ? 'hsl(var(--vacuei-mint-deep))' : d.s === 3 ? 'hsl(var(--vacuei-star))' : 'hsl(var(--vacuei-pop))',
                       }}
                     />
                   </div>
@@ -803,127 +958,8 @@ const ReviewsSection = () => {
           </div>
         </div>
 
-        {/* Filter chips */}
-        <div className="flex gap-2 flex-wrap mb-7">
-          {filters.map((f, i) => (
-            <button
-              key={f}
-              className="font-body font-bold text-[12px] lg:text-[13px] px-3.5 lg:px-4 py-2 lg:py-2.5 rounded-full border-[1.5px] border-vacuei-ink cursor-pointer"
-              style={{
-                background: i === 0 ? 'hsl(var(--vacuei-ink))' : 'hsl(var(--vacuei-paper))',
-                color: i === 0 ? 'hsl(var(--vacuei-paper))' : 'hsl(var(--vacuei-ink))',
-              }}
-            >
-              {f}
-            </button>
-          ))}
-        </div>
-
-        {/* Reviews grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 lg:gap-5">
-          {reviews.map((q, i) => (
-            <div
-              key={i}
-              className="border-[1.5px] border-vacuei-ink rounded-[18px] p-5 lg:p-6 flex flex-col gap-3.5"
-              style={{
-                background: q.tone === 'navy' ? 'hsl(var(--vacuei-ink))' : q.tone === 'mint' ? 'hsl(var(--vacuei-mint))' : 'hsl(var(--vacuei-paper))',
-                boxShadow: '5px 5px 0 hsl(var(--vacuei-ink))',
-                color: q.tone === 'navy' ? 'hsl(var(--vacuei-paper))' : 'hsl(var(--vacuei-ink))',
-              }}
-            >
-              <div className="flex justify-between items-center">
-                <Stars
-                  count={q.stars}
-                  color={q.tone === 'navy' ? 'hsl(var(--vacuei-mint))' : 'hsl(var(--vacuei-star))'}
-                  size={14}
-                />
-                <span
-                  className="font-body font-bold text-[9px] lg:text-[9.5px] tracking-[0.06em] uppercase flex items-center gap-1"
-                  style={{ color: q.tone === 'navy' ? 'hsl(var(--vacuei-mint))' : 'hsl(var(--vacuei-mint-deep))' }}
-                >
-                  <Check className="w-2.5 h-2.5" strokeWidth={3} />
-                  COMPRA VERIFICADA
-                </span>
-              </div>
-
-              <span
-                className="inline-block font-body font-bold text-[10px] lg:text-[10.5px] px-2.5 py-1 rounded-full tracking-[0.04em]"
-                style={{
-                  background: q.tone === 'navy' ? 'hsl(var(--vacuei-mint) / 0.15)' : 'hsl(var(--vacuei-bg))',
-                  color: q.tone === 'navy' ? 'hsl(var(--vacuei-mint))' : 'hsl(var(--vacuei-ink))',
-                  border: `1px solid ${q.tone === 'navy' ? 'hsl(var(--vacuei-mint) / 0.4)' : 'hsl(var(--vacuei-ink) / 0.2)'}`,
-                }}
-              >
-                {q.tag}
-              </span>
-
-              <p
-                className="font-body font-medium text-[13px] lg:text-[14px] leading-relaxed flex-1"
-                style={{ color: 'inherit', opacity: 0.9 }}
-              >
-                "{q.t}"
-              </p>
-
-              {q.withPhoto && (
-                <div className="flex gap-1.5">
-                  {[0, 1].map((k) => (
-                    <div
-                      key={k}
-                      className="w-14 h-14 lg:w-16 lg:h-16 rounded-lg flex-shrink-0 border border-vacuei-ink/25 flex items-center justify-center"
-                      style={{ background: 'hsl(var(--vacuei-bg))' }}
-                    >
-                      <span className="font-body text-[8px] text-vacuei-ink-soft opacity-50">Foto</span>
-                    </div>
-                  ))}
-                </div>
-              )}
-
-              <div
-                className="flex items-center gap-2.5 pt-3"
-                style={{ borderTop: `1px solid ${q.tone === 'navy' ? 'hsl(var(--vacuei-mint) / 0.25)' : 'hsl(var(--vacuei-ink) / 0.15)'}` }}
-              >
-                <div
-                  className="w-9 h-9 rounded-full flex-shrink-0 flex items-center justify-center font-display text-[14px]"
-                  style={{
-                    background: q.tone === 'navy' ? 'hsl(var(--vacuei-mint))' : 'hsl(var(--vacuei-ink))',
-                    color: q.tone === 'navy' ? 'hsl(var(--vacuei-ink))' : 'hsl(var(--vacuei-paper))',
-                  }}
-                >
-                  {q.name[0]}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="font-body font-extrabold text-[13px] leading-none" style={{ color: 'inherit' }}>
-                    {q.name}, {q.age}
-                  </div>
-                  <div className="font-body text-[11px] mt-0.5 opacity-60" style={{ color: 'inherit' }}>{q.loc}</div>
-                </div>
-                <span className="font-body text-[11px] opacity-60 flex-shrink-0" style={{ color: 'inherit' }}>{q.date}</span>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* UGC band */}
-        <div className="mt-12 lg:mt-14">
-          <div className="flex justify-between items-baseline mb-4">
-            <div>
-              <span className="font-body font-bold text-[10px] lg:text-[11px] tracking-[0.2em] uppercase text-vacuei-ink">FOTOS DE CLIENTES</span>
-              <h3 className="font-display text-[22px] lg:text-[28px] text-vacuei-ink mt-2">Banheiros reais com Jet Clean</h3>
-            </div>
-            <span className="font-body text-[12px] lg:text-[13px] text-vacuei-ink-soft font-medium">218 fotos enviadas</span>
-          </div>
-          <div className="grid grid-cols-3 lg:grid-cols-6 gap-2 lg:gap-2.5">
-            {[0,1,2,3,4,5].map((k) => (
-              <div
-                key={k}
-                className="aspect-square rounded-xl overflow-hidden border border-vacuei-ink/25 flex items-center justify-center"
-                style={{ background: ['hsl(var(--vacuei-bg))','hsl(var(--vacuei-mint))','hsl(var(--vacuei-paper))','hsl(var(--vacuei-bg))','hsl(var(--vacuei-mint))','hsl(var(--vacuei-paper))'][k] }}
-              >
-                <span className="font-body text-[9px] text-vacuei-ink-soft opacity-40 tracking-[0.1em] uppercase">UGC 0{k+1}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* Carousel — sem filtros, sem UGC */}
+        <ReviewsCarousel />
 
         <div className="text-center mt-10 lg:mt-12">
           <button
